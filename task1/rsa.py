@@ -121,10 +121,10 @@ if __name__ == '__main__':
     pubkey = privkey.public_key
     print('private key:', privkey)
     print('public key:', pubkey)
-    cipher1 = pubkey.encrypt(plain)
-    cipher2 = pubkey.encrypt(plain)
+    cipher1 = pubkey.encrypt(b2i(plain))
+    cipher2 = pubkey.encrypt(b2i(plain) * 2)
     print('plaintext:', plain)
-    print('ciphertext 1 (hex):', cipher1.hex())
-    print('ciphertext 2 (hex):', cipher2.hex())
-    assert cipher1 == cipher2
-    assert plain == privkey.decrypt(cipher1)
+    print('ciphertext 1 (hex):', hex(cipher1))
+    print('ciphertext 2 (hex):', hex(cipher2))
+    assert cipher1 * pubkey.encrypt(2) % pubkey.n == cipher2
+    assert plain == privkey.decrypt(i2b(cipher1))
