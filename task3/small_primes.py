@@ -1,0 +1,1 @@
+../task1/small_primes.py

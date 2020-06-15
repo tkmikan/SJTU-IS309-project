@@ -1,0 +1,5 @@
+requirements:
+flask, for server
+mitmproxy, for listening the client's request of upload
+pwntools, for pretty log when reconstructing AES key
+
