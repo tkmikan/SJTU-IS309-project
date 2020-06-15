@@ -31,6 +31,10 @@ class RSAKey:
             self.p = self.n // self.p
         else:
             return
+        if not isPrime(self.p):
+            raise ValueError('p is not prime')
+        if not isPrime(self.q):
+            raise ValueError('p is not prime')
         phi = (self.p - 1) * (self.q - 1)
         if self.d is not None:
             if self.e * self.d % phi != 1:
