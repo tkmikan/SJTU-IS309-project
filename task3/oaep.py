@@ -32,7 +32,7 @@ class RSA_OAEP_Key(RSAKey):
     def new(cls, nbits: int, hashalgo=None):
         return cls(key=super().new(nbits), hashalgo=hashalgo)
 
-    def H(self, m: int) -> int:
+    def H(self, m: bytes) -> bytes:
         return self.hashalgo(m).digest()
 
     def G(self, seed: bytes, expandlen: int) -> bytes:

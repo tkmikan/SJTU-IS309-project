@@ -60,8 +60,9 @@ def modinv(a: int, m: int) -> int:
         return x % m
 
 
-def i2b(i: int) -> bytes:
-    length = (i.bit_length() + 7) // 8
+def i2b(i: int, length=None) -> bytes:
+    if length is None:
+        length = (i.bit_length() + 7) // 8
     return i.to_bytes(length, 'big')
 
 
@@ -80,3 +81,9 @@ def unpad(b: bytes) -> bytes:
         if b[-i - 1] != padlen:
             raise ValueError('bad padding')
     return b[:-padlen]
+
+
+def bytes_xor(a: bytes, b: bytes) -> bytes:
+    if len(a) != len(b):
+        raise ValueError('bytes length not match')
+    return bytes([x ^ y for x, y in zip(a, b)])
